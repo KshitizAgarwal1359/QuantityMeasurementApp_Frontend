@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize UI
     renderDynamicView();
     populateUnits();
+    loadMyHistory();
 
     // Event Listeners for Cards (Event Delegation & Objects)
     typeCards.forEach(card => card.addEventListener('click', (e) => {
@@ -129,6 +130,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Async Fetch Execution for History
+    async function loadMyHistory() {
+        const historySection = document.getElementById('history-section');
+        const historyList = document.getElementById('history-list');
+        
+        try {
+            const history = await ApiService.getMyHistory();
+            if (history && history.length > 0) {
+                historyList.innerHTML = '';
+                history.forEach(item => {
+                    const row = document.createElement('div');
+                    row.style.background = '#F6F9FF';
+                    row.style.padding = '10px 15px';
+                    row.style.borderRadius = '8px';
+                    row.style.fontSize = '14px';
+                    row.style.color = '#333';
+                    row.style.display = 'flex';
+                    row.style.justifyContent = 'space-between';
+                    row.style.borderLeft = '4px solid var(--primary-blue)';
+
+                    let text = '';
+                    if (item.operation === 'COMPARE') {
+                        text = `Compared ${item.thisUnit} and ${item.thatUnit} ➔ ${item.resultString === 'True' ? 'Equal' : 'Not Equal'}`;
+                    } else if (item.operation === 'CONVERT') {
+                        text = `Converted ${item.thisUnit} to ${item.resultUnit} ➔ ${item.resultString}`;
+                    } else if (item.operation === 'DIVIDE') {
+                        text = `Divided ${item.thisUnit} by ${item.thatUnit} ➔ Ratio: ${item.resultString}`;
+                    } else {
+                        text = `${item.operation} ${item.thisUnit} and ${item.thatUnit} ➔ ${item.resultString} ${item.resultUnit}`;
+                    }
+
+                    if (item.isError) {
+                        row.style.borderLeftColor = 'var(--error)';
+                        text = `[Error] ${item.operation}: ${item.errorMessage}`;
+                    }
+
+                    row.innerHTML = `<span style="font-weight: 500;">${text}</span><span style="font-size: 12px; color: #888;">${item.thisMeasurementType}</span>`;
+                    historyList.appendChild(row);
+                });
+            } else {
+                historyList.innerHTML = '<div style="font-size: 13px; color: #7CA1F3; text-align: center;">No history available yet.</div>';
+            }
+            historySection.style.display = 'block';
+        } catch (error) {
+            console.error("Could not load history", error);
+            historySection.style.display = 'none';
+        }
+    }
+
     // Async Fetch Execution with Promise Resolving
     async function runCalculation() {
         let activeBtn = null;
@@ -200,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeBtn.style.opacity = '1';
                 activeBtn.textContent = originalText;
             }
+            loadMyHistory();
         }
     }
 });

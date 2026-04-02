@@ -75,4 +75,8 @@ class ApiService {
     static async login(username, password) {
         return this.request('/auth/login', 'POST', { username, password });
     }
+
+    static async getMyHistory() {
+        return this.request('/quantities/history/my', 'GET', null);
+    }
 }

@@ -129,7 +129,14 @@
         </template>
 
     </main>
-
+    
+    <div id="history-section" class="history-box" style="display: none; max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+        <h3 style="margin-top: 0; color: var(--primary-blue); font-size: 16px; border-bottom: 2px solid #EDF2FC; padding-bottom: 10px; margin-bottom: 15px;">Your Activity History</h3>
+        <div id="history-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 250px; overflow-y: auto;">
+            <!-- History items injected here -->
+            <div style="font-size: 13px; color: #7CA1F3; text-align: center;">No history available yet.</div>
+        </div>
+    </div>
     <!-- Error/Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
