@@ -1,0 +1,22 @@
+<div class="conversion-view">
+  <div class="input-group">
+    <label>FROM</label>
+    <input type="number" [(ngModel)]="fromValue" placeholder="Enter value" />
+    <select [(ngModel)]="fromUnit">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+  <div class="input-group">
+    <label>TO</label>
+    <input type="number" [value]="toValue" class="result-input" readonly />
+    <select [(ngModel)]="toUnit">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+</div>
+<div class="button-group">
+  <button class="calc-btn" (click)="onConvert()" [disabled]="isLoading">
+    {{ isLoading ? 'Converting...' : 'Convert' }}
+  </button>
+  <button class="clear-btn" (click)="onClear()">Clear</button>
+</div>

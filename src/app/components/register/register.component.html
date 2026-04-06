@@ -1,0 +1,49 @@
+<!-- UC20: Register HTML Template -->
+<div class="auth-page">
+  <div class="auth-header">
+    <div class="icon-row">
+      <div class="icon-circle bg-blue">📏</div>
+      <div class="icon-circle bg-green">🧮</div>
+      <div class="icon-circle bg-red">🌡️</div>
+      <div class="icon-circle bg-purple">⚖️</div>
+    </div>
+    <h1 class="auth-title">Quantity Measurement App</h1>
+    <p class="auth-subtitle">Convert, compare, and calculate measurements with precision</p>
+  </div>
+
+  <div class="auth-card">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" formControlName="username" placeholder="Choose a username" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" formControlName="email" placeholder="Enter your email" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Choose a password" />
+      </div>
+
+      <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" class="auth-btn" [disabled]="isLoading || registerForm.invalid">
+        {{ isLoading ? 'Creating account...' : 'Sign Up' }}
+      </button>
+
+      <div class="auth-footer-text">
+        Already have an account? <a routerLink="/login">Sign in here</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="page-footer">
+    <p>Powerful measurement tools:</p>
+    <div class="footer-links">
+      <span>📏 Conversions</span>
+      <span>⚖️ Comparisons</span>
+      <span>🧮 Arithmetic</span>
+    </div>
+  </div>
+</div>

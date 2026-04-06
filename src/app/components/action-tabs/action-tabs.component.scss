@@ -1,0 +1,25 @@
+$primary-blue: #5873ff;
+
+.section-title {
+  font-size: 0.8rem; color: #888; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 15px; font-weight: 600;
+}
+
+.cards-container { display: flex; gap: 5px; margin-bottom: 40px; }
+
+.action-tabs {
+  background: #fff; border-radius: 8px; padding: 5px;
+}
+
+.action-tab {
+  flex: 1; border: none; background: transparent; padding: 12px;
+  font-weight: 600; color: #888; border-radius: 6px; cursor: pointer; transition: 0.3s;
+  &.selected {
+    background: $primary-blue; color: white;
+    box-shadow: 0 4px 10px rgba(88, 115, 255, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  .action-tab { padding: 10px; font-size: 0.85rem; }
+}

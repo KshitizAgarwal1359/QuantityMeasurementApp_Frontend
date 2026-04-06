@@ -1,0 +1,45 @@
+<!-- UC20: Dashboard HTML Template — Component Composition & Conditional Rendering -->
+
+<!-- Props Passing — @Output from header -->
+<app-header (logoutClicked)="onLogout()"></app-header>
+
+<main class="app-main">
+  <!-- Props Passing — @Input/@Output for type selector -->
+  <app-type-selector
+    [selectedType]="selectedType"
+    (typeChanged)="onTypeChanged($event)"
+  ></app-type-selector>
+
+  <!-- Props Passing — @Input/@Output for action tabs -->
+  <app-action-tabs
+    [selectedAction]="selectedAction"
+    (actionChanged)="onActionChanged($event)"
+  ></app-action-tabs>
+
+  <!-- Conditional Rendering — show active action view using ngSwitch -->
+  <section class="dynamic-area" [ngSwitch]="selectedAction">
+    <app-conversion
+      *ngSwitchCase="'conversion'"
+      [measurementType]="selectedType"
+      (operationDone)="onOperationDone()"
+    ></app-conversion>
+
+    <app-comparison
+      *ngSwitchCase="'comparison'"
+      [measurementType]="selectedType"
+      (operationDone)="onOperationDone()"
+    ></app-comparison>
+
+    <app-arithmetic
+      *ngSwitchCase="'arithmetic'"
+      [measurementType]="selectedType"
+      (operationDone)="onOperationDone()"
+    ></app-arithmetic>
+  </section>
+
+  <!-- History — @Input for data binding -->
+  <app-history [historyItems]="historyItems"></app-history>
+</main>
+
+<!-- Toast notifications -->
+<app-toast></app-toast>

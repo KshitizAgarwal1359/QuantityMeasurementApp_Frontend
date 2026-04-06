@@ -1,0 +1,14 @@
+<section class="type-selector">
+  <h2 class="section-title">CHOOSE TYPE</h2>
+  <div class="cards-container">
+    <div
+      *ngFor="let t of types"
+      class="card type-card"
+      [class.selected]="selectedType === t.key"
+      (click)="selectType(t.key)"
+    >
+      <div class="icon">{{ t.icon }}</div>
+      <span>{{ t.label }}</span>
+    </div>
+  </div>
+</section>

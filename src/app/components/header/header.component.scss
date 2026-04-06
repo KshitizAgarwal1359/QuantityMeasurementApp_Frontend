@@ -1,0 +1,31 @@
+.app-header {
+  background: #5873ff;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  h1 { font-size: 1.5rem; font-weight: 600; }
+}
+
+.logout-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover { background: rgba(255,255,255,0.2); }
+}
+
+@media (max-width: 600px) {
+  .app-header h1 { font-size: 1.1rem; }
+  .logout-btn { padding: 4px 8px; font-size: 0.8rem; }
+}

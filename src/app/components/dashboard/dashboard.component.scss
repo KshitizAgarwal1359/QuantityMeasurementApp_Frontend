@@ -1,0 +1,9 @@
+.app-main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 600px) {
+  .app-main { margin: 20px auto; padding: 0 10px; }
+}

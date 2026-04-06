@@ -1,0 +1,39 @@
+<div class="arithmetic-view">
+  <div class="input-group">
+    <label>VALUE 1</label>
+    <input type="number" [(ngModel)]="value1" placeholder="Enter value" />
+    <select [(ngModel)]="unit1">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+  <div class="arithmetic-middle">
+    <select class="operator-select" [(ngModel)]="operator" (ngModelChange)="onOperatorChange()">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="/">/</option>
+    </select>
+  </div>
+  <div class="input-group">
+    <label>VALUE 2</label>
+    <input type="number" [(ngModel)]="value2" placeholder="Enter value" />
+    <select [(ngModel)]="unit2">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+</div>
+<div class="button-group">
+  <button class="calc-btn" (click)="onCalculate()" [disabled]="isLoading">
+    {{ isLoading ? 'Calculating...' : 'Calculate' }}
+  </button>
+  <button class="clear-btn" (click)="onClear()">Clear</button>
+</div>
+<div class="result-box">
+  <label>RESULT</label>
+  <div class="result-row">
+    <div class="result-text">{{ resultText }}</div>
+    <!-- Conditional Rendering for result unit based on operator -->
+    <select *ngIf="showResultUnit" [(ngModel)]="resultUnit">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+</div>

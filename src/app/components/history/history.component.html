@@ -1,0 +1,18 @@
+<!-- UC20: History HTML Template — Conditional Rendering with *ngIf and *ngFor -->
+<div class="history-box" *ngIf="historyItems.length > 0">
+  <h3>Your Activity History</h3>
+  <div class="history-list">
+    <div
+      *ngFor="let item of historyItems"
+      class="history-row"
+      [class.error-row]="item.isError"
+    >
+      <span class="history-text">{{ getHistoryText(item) }}</span>
+      <span class="history-type">{{ item.thisMeasurementType }}</span>
+    </div>
+  </div>
+</div>
+<div class="history-box empty" *ngIf="historyItems.length === 0">
+  <h3>Your Activity History</h3>
+  <div class="history-empty">No history available yet.</div>
+</div>

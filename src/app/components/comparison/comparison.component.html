@@ -1,0 +1,29 @@
+<div class="comparison-view">
+  <div class="input-group">
+    <label>VALUE 1</label>
+    <input type="number" [(ngModel)]="value1" placeholder="Enter value" />
+    <select [(ngModel)]="unit1">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+  <div class="compare-middle">
+    <div class="compare-icon">{{ resultIcon }}</div>
+  </div>
+  <div class="input-group">
+    <label>VALUE 2</label>
+    <input type="number" [(ngModel)]="value2" placeholder="Enter value" />
+    <select [(ngModel)]="unit2">
+      <option *ngFor="let u of units" [value]="u">{{ u | titlecase }}</option>
+    </select>
+  </div>
+</div>
+<div class="button-group">
+  <button class="calc-btn" (click)="onCompare()" [disabled]="isLoading">
+    {{ isLoading ? 'Comparing...' : 'Compare' }}
+  </button>
+  <button class="clear-btn" (click)="onClear()">Clear</button>
+</div>
+<div class="result-box">
+  <label>RESULT</label>
+  <div class="result-text" [style.color]="resultColor">{{ resultText }}</div>
+</div>

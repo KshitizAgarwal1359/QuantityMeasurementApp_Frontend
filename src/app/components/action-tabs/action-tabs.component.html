@@ -1,0 +1,13 @@
+<section class="action-selector">
+  <h2 class="section-title">CHOOSE ACTION</h2>
+  <div class="cards-container action-tabs">
+    <button
+      *ngFor="let a of actions"
+      class="action-tab"
+      [class.selected]="selectedAction === a.key"
+      (click)="selectAction(a.key)"
+    >
+      {{ a.label }}
+    </button>
+  </div>
+</section>
